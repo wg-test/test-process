@@ -8,7 +8,10 @@ runs:
   using: "composite"
   steps:
     - name: Print Input Message
-      run: echo "Message: ${{ inputs.message }}"
+      run: echo "Message: $INPUT_MESSAGE"
+      shell: bash
+      env:
+        INPUT_MESSAGE: ${{ inputs.message }}
 
     - name: Call External Action from Org Repo
       uses: wg-test/test-tools/.github/actions/external-action@${{ github.ref_name }}
