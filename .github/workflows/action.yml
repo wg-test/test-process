@@ -1,15 +1,21 @@
 name: "Test GitHub Tools Composite Action"
+
 on:
   push:
     branches:
-      - main  # Trigger on push to main branch
+      - main  # Trigger on push to the main branch
 
 jobs:
   test_composite_action:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Specifies the operating system
+
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2  
+        uses: actions/checkout@v2  # Check out the code of the current repository
 
-      - name: Call External Action from Org Repo
-        uses: wg-test/test-tools/.github/actions/external-action@${{ github.ref_name }}
+      - name: Call External Action from wg-tools
+        uses: wg-test/wg-tools/.github/actions/external-action@main  # Use the same ref as the workflow
+        with:
+          # If the external action requires inputs, pass them here
+          input1: "value1"
+          input2: "value2"
