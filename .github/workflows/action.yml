@@ -1,0 +1,16 @@
+name: "Test Composite Action with External Repo"
+description: "A composite action that calls an action from another repo in the same organization"
+inputs:
+  message:
+    description: "A message to print"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Print Input Message
+      run: echo "Message: ${{ inputs.message }}"
+
+    - name: Call External Action from Org Repo
+      uses: wg-test/test-tools/.github/actions/external-action@${{ github.ref_name }}
+      with:
+        message: "This is a message from the external action in another repo."
