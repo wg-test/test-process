@@ -14,6 +14,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Call custom action in Repo 2
-        uses: repo2-owner/repo2-name/path-to-action@main
+        uses: wg-test/test-tools@main
         with:
           some-input: "value"
