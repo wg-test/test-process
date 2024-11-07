@@ -1,19 +1,21 @@
-# test-process/.github/workflows/trigger-custom-action.yml
-name: Trigger Custom Action in Repo 2
+name: "Test GitHub Tools Composite Action"
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch
 
 jobs:
-  call-custom-action-in-repo2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
+  test_composite_action:
+    runs-on: ubuntu-latest  # Specifies the operating system
 
-      - name: Call custom action in Repo 2
-        uses: wg-test/test-tools/.github/actions@main
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2  # Check out the code of the current repository
+
+      - name: Call External Action from wg-tools
+        uses: wg-test/wg-tools/.github/actions@main
         with:
-          some-input: "value"
+          # If the external action requires inputs, pass them here
+          input1: "value1"
+          input2: "value2"
