@@ -19,4 +19,4 @@ jobs:
           # If the external action requires inputs, pass them here
           input1: "value1"
           input2: "value2"
-          ref-name: "main"
+          ref-name: ${{ github.ref_name }} 
